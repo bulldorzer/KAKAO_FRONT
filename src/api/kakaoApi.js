@@ -1,4 +1,5 @@
 import axios from "axios"
+import { API_SERVER_HOST } from "./todoApi"
 
 const rest_api_key = `3e704c588265350d0f636dc2e9b14734` // rest api 키
 const redirect_uri = `http://localhost:3000/member/kakao` // 인증 처리 경로
@@ -26,6 +27,12 @@ export const getAccessToken = async (authCode) =>{
     }
 
     const res = await axios.post(access_token_url,params,header)
-    const access_token = res.data.access_token
-    return access_token
+    const accessToken = res.data.access_token
+    return accessToken
+}
+
+export const getMemberWithAccessToken = async(accessToken) =>{
+    const res = await axios.get(`${API_SERVER_HOST}/api/member/kakao?accessToken=${accessToken}`)
+
+    return res.data
 }
