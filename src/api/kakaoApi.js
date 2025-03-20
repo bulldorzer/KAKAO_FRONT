@@ -31,6 +31,7 @@ export const getAccessToken = async (authCode) =>{
     return accessToken
 }
 
+// 내가 개발중인 api에 요청
 export const getMemberWithAccessToken = async(accessToken) =>{
     const res = await axios.get(`${API_SERVER_HOST}/api/member/kakao?accessToken=${accessToken}`)
 
